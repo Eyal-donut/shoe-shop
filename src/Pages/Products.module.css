@@ -1,0 +1,9 @@
+.show {
+    font-size: 2.2rem;
+    color: rgb(178, 64, 64);
+    margin: 4rem;
+    display: flex;
+}
+.hide {
+    display: none;
+}

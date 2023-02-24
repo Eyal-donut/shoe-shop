@@ -4,7 +4,7 @@ const Home = () => {
     return (
         <>
             <h1>Shoe Shop</h1>
-            <p>
+            <p className='go-to'>
             Go to <Link to="products">Products</Link>
             </p>
         </>

@@ -4,7 +4,6 @@ import React, { useRef } from "react";
 const SearchBar = ({ products, inputRef, onInputChange }) => {
 
   const inputHandler = (e) => {
-    console.log(products);
     const currentProducts = products.filter((prod) => {
       const productDetails = (
         prod.title +

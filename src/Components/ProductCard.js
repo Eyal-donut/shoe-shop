@@ -22,8 +22,8 @@ const ProductCard = ({products, productName, url, description, sizes, identifier
             <p>Price: {price}$</p>
             <p>Available sizes: {sizes}</p>
             <div className={classes.buttonsWrap}>
-                <Link to={`edit/${identifier}`}><button>Edit</button></Link>
-                <button onClick={clickHandler} id={identifier}>Delete</button>
+                <Link to={`edit/${identifier}`}><button className={classes.button}>Edit</button></Link>
+                <button onClick={clickHandler} id={identifier} className={classes.button}>Delete</button>
             </div>
         </div>
             
