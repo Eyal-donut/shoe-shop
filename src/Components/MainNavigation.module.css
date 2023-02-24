@@ -1,0 +1,14 @@
+a.active {
+    color: var(--active-link);
+}
+
+nav {
+    width: 100vw;
+    height: 50px;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,5 @@
+:root {
+    --bgr-main: rgb(215,215,215,.5);
+    --bgr-nav: rgb(0,0,0,.3);
+    --active-link: goldenrod;
+}
