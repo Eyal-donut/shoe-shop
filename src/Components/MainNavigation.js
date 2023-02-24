@@ -6,7 +6,7 @@ const MainNavigation = () => {
     <>
       <nav className={classes.nav}>
         <ul className={classes.ul}>
-          <li>
+          <li className={classes.li}>
             <NavLink
               to="/"
               className={({ isActive }) =>
@@ -17,7 +17,7 @@ const MainNavigation = () => {
               Home
             </NavLink>
           </li>
-          <li>
+          <li className={classes.li}>
             <NavLink
               to="/products/"
               className={({ isActive }) =>
