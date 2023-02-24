@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
-import data from "../Data";
 import ProductCard from "../Components/ProductCard";
 import SearchBar from "../Components/SearchBar";
 import classes from "./Products.module.css";
 import API from "../API";
-import axios from "axios";
 
 const Products = () => {
 
@@ -46,7 +44,9 @@ const Products = () => {
     console.log("hi");
   };
 
+
   //!################################### UseEffect ########################################
+  
   //focusing on search bar when starting and fetching information when starting
   useEffect(() => {
     inputRef.current.focus();

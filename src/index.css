@@ -38,9 +38,7 @@ h2 {
 a:visited{
   color: inherit;
 }
-ul {
-  list-style: none;
-}
+
 
 li {
   font-size: 1.6rem;
@@ -68,4 +66,8 @@ label {
 
 .go-to {
   margin: 2rem;
+}
+
+ul {
+  list-style: none;
 }
