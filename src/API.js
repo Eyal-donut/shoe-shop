@@ -5,7 +5,6 @@ const API = {
         baseURL: 'https://63f8f6b21dc21d5465cbbfc1.mockapi.io/data'
     }),
 
-
     async addProduct(product) {
         const response = await this.data.post('/', product)
         return response

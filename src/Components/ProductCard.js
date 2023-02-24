@@ -5,7 +5,7 @@ const ProductCard = ({products, productName, url, description, sizes, identifier
 
     const clickHandler = (e) => {
         const filteredProducts = products.filter((prod)=> {
-            return prod.id !== Number(e.target.id)
+            return prod.id !== e.target.id
         })
         onDeleteClick(filteredProducts)
     }

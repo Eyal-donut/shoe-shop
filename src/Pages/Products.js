@@ -4,22 +4,53 @@ import data from "../Data";
 import ProductCard from "../Components/ProductCard";
 import SearchBar from "../Components/SearchBar";
 import classes from "./Products.module.css";
+import API from "../API";
+import axios from "axios";
 
 const Products = () => {
+
+    //!################################### Use State #######################################
+
   const [products, setProducts] = useState(() => {
     const localStorageProducts = localStorage.getItem("localStorageProducts");
     if (localStorageProducts) {
       return JSON.parse(localStorageProducts);
-    } else return data;
+    } else return [];
   });
+
   const [currentProducts, setCurrentProducts] = useState(products);
   const [isNoProducts, setIsNoProducts] = useState(false);
   const [noProductsMsg, setNoProductsMsg] = useState("");
   const inputRef = useRef(null);
 
-  //focusing on search bar when starting
+  //! ################################# Aid Functions ##################################
+
+  const getProducts = async () => {
+    const localStorageProducts = localStorage.getItem("localStorageProducts");
+    if (!localStorageProducts) {
+        const data = await API.getProducts();
+        setProducts(data);
+        setCurrentProducts(data);
+    }
+  };
+
+  //!###################################### Handlers ###################################
+
+  const searchHandler = (filteredBySearchInput) => {
+    setCurrentProducts(filteredBySearchInput);
+  };
+
+  const deleteClickHandler = (productsFilteredByDelete) => {
+    setCurrentProducts(productsFilteredByDelete);
+    setProducts(productsFilteredByDelete);
+    console.log("hi");
+  };
+
+  //!################################### UseEffect ########################################
+  //focusing on search bar when starting and fetching information when starting
   useEffect(() => {
     inputRef.current.focus();
+    getProducts();
   }, []);
 
   //Updating the local storage every time the products change
@@ -35,17 +66,7 @@ const Products = () => {
     } else setIsNoProducts(false);
   }, [currentProducts]);
 
-  const searchHandler = (filteredBySearchInput) => {
-    setCurrentProducts(filteredBySearchInput);
-  };
-
-  const deleteClickHandler = (productsFilteredByDelete) => {
-    setCurrentProducts(productsFilteredByDelete);
-    setProducts(productsFilteredByDelete);
-  };
-
   useEffect(() => {
-    console.log(products.length);
     if (products.length === 0) {
       setNoProductsMsg("There are no products in stock");
     }
