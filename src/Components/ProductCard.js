@@ -1,9 +1,18 @@
 import classes from './ProductCard.module.css'
+import { Link } from 'react-router-dom'
 
-const ProductCard = ({productName, url, description, sizes, identifier, price}) => {
+const ProductCard = ({products, productName, url, description, sizes, identifier, price, onDeleteClick}) => {
+
+    const clickHandler = (e) => {
+        const filteredProducts = products.filter((prod)=> {
+            return prod.id !== Number(e.target.id)
+        })
+        onDeleteClick(filteredProducts)
+    }
+
     return (
         <>
-        <div className={classes.wrapper} identifier={identifier}>
+        <div className={classes.wrapper} identifier={identifier} id={identifier}>
             <h2>{productName}</h2>
             <div 
             className= {classes.pic}
@@ -12,6 +21,10 @@ const ProductCard = ({productName, url, description, sizes, identifier, price}) 
             <p>{description}</p>
             <p>Price: {price}$</p>
             <p>Available sizes: {sizes}</p>
+            <div className={classes.buttonsWrap}>
+                <Link to={`edit/${identifier}`}><button>Edit</button></Link>
+                <button onClick={clickHandler} id={identifier}>Delete</button>
+            </div>
         </div>
             
         </>

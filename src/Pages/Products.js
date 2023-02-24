@@ -9,14 +9,19 @@ const Products = () => {
   const [currentProducts, setCurrentProducts] = useState(data);
   const inputRef = useRef(null);
 
-  const searchHandler = (searchInput) => {
-    setCurrentProducts(searchInput);
-  };
-
   //focusing on search bar when starting
   useEffect(() => {
     inputRef.current.focus();
   }, []);
+
+  const searchHandler = (filteredBySearchInput) => {
+    setCurrentProducts(filteredBySearchInput);
+  };
+
+  const deleteClickHandler = (filteredByDelete) => {
+    console.log(filteredByDelete)
+    setCurrentProducts(filteredByDelete)
+  };
 
   return (
     <>
@@ -32,6 +37,8 @@ const Products = () => {
         {currentProducts.map((product) => {
           return (
             <ProductCard
+              products={currentProducts}
+              onDeleteClick={deleteClickHandler}
               key={product.id}
               identifier={product.id}
               productName={product.title}

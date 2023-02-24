@@ -15,7 +15,6 @@ const SearchBar = ({ products, inputRef, onInputChange }) => {
       ).toLowerCase();
       return productDetails.includes(e.target.value.toLowerCase());
     });
-    console.log(e.target.value);
     onInputChange(currentProducts);
   };
 
