@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import React, { useEffect, useState, useRef } from "react";
-import classes from "../Pages/ProductEditPage.module.css";
+import classes from "../Pages/AddProductPage.module.css";
 import API from "../API";
 
 const AddProductPage = () => {
@@ -18,12 +18,6 @@ const AddProductPage = () => {
         const fetched = await API.getProducts()
         localStorage.setItem("localStorageProducts",JSON.stringify(fetched))
     }
-
-  // const productNameRef = useRef(null);
-//   const urlRef = useRef(null);
-//   const descriptionRef = useRef(null);
-//   const sizesRef = useRef(null);
-//   const priceRef = useRef(null);
 
 const inputChangeHandler = (e) => {
     if (e.target.name === "product-name") {
@@ -79,7 +73,6 @@ if (!isApproved) {
                 type="text"
                 name="product-name"
                 onChange={inputChangeHandler}
-                // ref={productNameRef}
               />
             </li>
             <li className={classes.li}>
@@ -89,18 +82,9 @@ if (!isApproved) {
                 type="text"
                 name="image-url"
                 onChange={inputChangeHandler}
-                // ref={urlRef}
               />
             </li>
-            <li>
-              <label htmlFor="description">Description: </label>
-              <input
-                className={classes.input}
-                name="description"
-                onChange={inputChangeHandler}
-                // ref={descriptionRef}
-              />
-            </li>
+            
             <li className={classes.li}>
               <label htmlFor="price">Price: </label>
               <input
@@ -108,7 +92,6 @@ if (!isApproved) {
                 type="number"
                 name="price"
                 onChange={inputChangeHandler}
-                // ref={sizesRef}
               ></input>
             </li>
             <li className={classes.li}>
@@ -118,8 +101,15 @@ if (!isApproved) {
                 name="sizes"
                 type="text"
                 onChange={inputChangeHandler}
-                // ref={priceRef}
               ></input>
+            </li>
+            <li>
+              <label htmlFor="description">Description: </label>
+              <input
+                className={classes.input}
+                name="description"
+                onChange={inputChangeHandler}
+              />
             </li>
           </ul>
           <button
@@ -139,15 +129,6 @@ if (!isApproved) {
     return (
       <>
         <h1>New product saved</h1>
-        {/* <ProductCard
-          products={products}
-          productName={editedProduct.title}
-          url={editedProduct.imageUrl}
-          description={editedProduct.description}
-          sizes={editedProduct.size}
-          identifier={editedProduct.id}
-          price={editedProduct.price}
-        /> */}
           <p>
           Go back to <Link to="/products/">Products page</Link>
         </p>

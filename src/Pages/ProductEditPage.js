@@ -79,7 +79,6 @@ useEffect(()=> {
 },[isApproved])
 
 
-
   if (!isApproved) {
     return (
       <>
@@ -113,15 +112,7 @@ useEffect(()=> {
                 onChange={inputChangeHandler}
               />
             </li>
-            <li>
-              <label htmlFor="description">Description: </label>
-              <input
-                className={classes.input}
-                name="description"
-                placeholder={editedProduct.description}
-                onChange={inputChangeHandler}
-              />
-            </li>
+            
             <li className={classes.li}>
               <label htmlFor="price">Price: </label>
               <input
@@ -141,6 +132,15 @@ useEffect(()=> {
                 placeholder={editedProduct.size}
                 onChange={inputChangeHandler}
               ></input>
+            </li>
+            <li>
+              <label htmlFor="description">Description: </label>
+              <input
+                className={classes.input}
+                name="description"
+                placeholder={editedProduct.description}
+                onChange={inputChangeHandler}
+              />
             </li>
           </ul>
           <button
