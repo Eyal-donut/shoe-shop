@@ -2,13 +2,12 @@ a.active,
 a:hover {
     color: var(--active-link);
 }
-
-nav {
+.nav {
     width: 100vw;
     height: 50px;
 }
 
-ul {
+.ul {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -16,6 +15,6 @@ ul {
     list-style: none;
 }
 
-li {
+.li {
 width: 5rem;
 }

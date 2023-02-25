@@ -5,7 +5,7 @@ const Home = () => {
         <>
             <h1>Shoe Shop</h1>
             <p className='go-to'>
-            Go to <Link to="products">Products</Link>
+            Go to <Link to="products/">Products</Link>
             </p>
         </>
     )

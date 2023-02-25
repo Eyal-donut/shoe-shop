@@ -48,7 +48,7 @@ const ProductEditPage = () => {
                 <button className={classes.button} type='submit' onClick={clickHandler}>Save changes</button>
               </form>
           <p>
-              Go back to <Link to='/products'>Products page</Link>
+              Go back to <Link to='/products/'>Products page</Link>
           </p>
       </>
     )

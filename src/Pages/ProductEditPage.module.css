@@ -1,4 +1,4 @@
-form {
+.form {
     width: 33rem;
     height: 40rem;
     display: flex;
@@ -11,7 +11,7 @@ form {
     margin-bottom: 2rem;
 }
 
-ul {
+.ul {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,7 +19,7 @@ ul {
     width: 100%;
 }
 
-button {
+.button {
     width:5rem;
     height: 2.8rem;
     background: var(--btn-bgr) ;
@@ -28,24 +28,24 @@ button {
     margin: 1rem 1rem;
     cursor: pointer;
 }
-button:hover {
+.button:hover {
     box-shadow: 0 1px 4px rgb(0,0,0,.25) ;
 
 }
 
-input {
+.input {
     width: 90%;
     margin-bottom: 1.5rem;
     margin-left:1.5rem;
 }
 
 
-li {
+.li {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-button {
+.button {
     width: 10rem;
 }
