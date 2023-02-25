@@ -1,9 +1,11 @@
 import classes from './ProductCard.module.css'
 import { Link } from 'react-router-dom'
+import API from '../API'
 
 const ProductCard = ({products, productName, url, description, sizes, identifier, price, onDeleteClick}) => {
 
     const clickHandler = (e) => {
+        API.deleteProduct(e.target.id)
         const filteredProducts = products.filter((prod)=> {
             return prod.id !== e.target.id
         })

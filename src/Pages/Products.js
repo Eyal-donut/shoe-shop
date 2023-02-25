@@ -41,8 +41,9 @@ const Products = () => {
   const deleteClickHandler = (productsFilteredByDelete) => {
     setCurrentProducts(productsFilteredByDelete);
     setProducts(productsFilteredByDelete);
-    console.log("hi");
   };
+
+  const addProductClickHandler = () => {}
 
 
   //!################################### UseEffect ########################################
@@ -101,8 +102,8 @@ const Products = () => {
             />
           );
         })}
-
       </div>
+      <Link to="/products/add"><button onClick={addProductClickHandler} className={classes.button}>Add new Product</button></Link> 
       <p className="go-to">
         Go back to <Link to="/">Home</Link>
       </p>
