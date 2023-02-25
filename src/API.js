@@ -7,11 +7,16 @@ const API = {
 
     async addProduct(product) {
         const response = await this.data.post('/', product)
-        return response
+        return response.data
     },
 
     async deleteProduct(productID) {
         this.data.delete(`/${productID}`)
+
+    },
+
+    async editProduct(productID) {
+        this.data.patch(`/${productID}`)
 
     },
 
@@ -35,3 +40,9 @@ const API = {
 }
 
 export default API
+
+// const addProduct = async (newProduct) => {
+//     const response = await API.addProduct(newProduct)
+//     const fetched = await API.getProducts()
+//     localStorage.setItem("localStorageProducts",JSON.stringify(fetched))
+// }
