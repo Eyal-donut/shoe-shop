@@ -4,6 +4,7 @@ import ProductCard from "../Components/ProductCard";
 import SearchBar from "../Components/SearchBar";
 import classes from "./Products.module.css";
 import API from "../API";
+import Spinner from "../Components/Spinner";
 
 const Products = () => {
 
@@ -19,6 +20,9 @@ const Products = () => {
   const [currentProducts, setCurrentProducts] = useState(products);
   const [isNoProducts, setIsNoProducts] = useState(false);
   const [noProductsMsg, setNoProductsMsg] = useState("");
+  const [isSpinnerActive, setSpinnerActive] = useState(false)
+
+
   const inputRef = useRef(null);
 
   //! ################################# Aid Functions ##################################
@@ -26,9 +30,11 @@ const Products = () => {
   const getProducts = async () => {
     const localStorageProducts = localStorage.getItem("localStorageProducts");
     if (!localStorageProducts) {
+        setSpinnerActive(true)
         const data = await API.getProducts();
         setProducts(data);
         setCurrentProducts(data);
+        setSpinnerActive(false)
     }
   };
 
@@ -42,9 +48,6 @@ const Products = () => {
     setCurrentProducts(productsFilteredByDelete);
     setProducts(productsFilteredByDelete);
   };
-
-  const addProductClickHandler = () => {}
-
 
   //!################################### UseEffect ########################################
   
@@ -73,41 +76,54 @@ const Products = () => {
     }
   }, [products]);
 
-  return (
-    <>
-      <h1>Our Products</h1>
-
-      <SearchBar
-        products={products}
-        inputRef={inputRef}
-        onInputChange={searchHandler}
-      />
-      <div className={isNoProducts ? classes.show : classes.hide}>
-        {noProductsMsg}
-      </div>
-
-      <div className="products-container">
-        {currentProducts.map((product) => {
-          return (
-            <ProductCard
-              products={products}
-              onDeleteClick={deleteClickHandler}
-              key={product.id}
-              identifier={product.id}
-              productName={product.title}
-              url={product.imageUrl}
-              description={product.description}
-              price={product.price}
-              sizes={product.size}
-            />
-          );
-        })}
-      </div>
-      <Link to="/products/add"><button onClick={addProductClickHandler} className={classes.button}>Add new Product</button></Link> 
-      <p className="go-to">
-        Go back to <Link to="/">Home</Link>
-      </p>
-    </>
-  );
+  if (isSpinnerActive) {
+    return (
+      <>
+        <h1>Our Products</h1>
+        <Spinner/>
+        <Link to="/products/add"><button className={classes.button}>Add new Product</button></Link> 
+        <p className="go-to">
+          Go back to <Link to="/">Home</Link>
+        </p>
+      </>
+    )
+  } else {
+    return (
+      <>
+        <h1>Our Products</h1>
+  
+        <SearchBar
+          products={products}
+          inputRef={inputRef}
+          onInputChange={searchHandler}
+        />
+        <div className={isNoProducts ? classes.show : classes.hide}>
+          {noProductsMsg}
+        </div>
+  
+        <div className="products-container">
+          {currentProducts.map((product) => {
+            return (
+              <ProductCard
+                products={products}
+                onDeleteClick={deleteClickHandler}
+                key={product.id}
+                identifier={product.id}
+                productName={product.title}
+                url={product.imageUrl}
+                description={product.description}
+                price={product.price}
+                sizes={product.size}
+              />
+            );
+          })}
+        </div>
+        <Link to="/products/add"><button className={classes.button}>Add new Product</button></Link> 
+        <p className="go-to">
+          Go back to <Link to="/">Home</Link>
+        </p>
+      </>
+    );
+  }
 };
 export default Products;

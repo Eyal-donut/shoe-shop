@@ -71,3 +71,19 @@ label {
 ul {
   list-style: none;
 }
+
+.spinner {
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50px;
+  border-top: .5rem solid var(--btn-bgr);
+  border-right: .5rem solid var(--btn-bgr);
+  animation: spin 1s linear infinite;
+  margin: 2rem;
+  margin-bottom: 4rem;
+}
+
+@keyframes spin {
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}

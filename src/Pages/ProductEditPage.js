@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import classes from "../Pages/ProductEditPage.module.css";
 import API from "../API";
+import axios from "axios";
 
 const ProductEditPage = () => {
 
@@ -17,11 +18,16 @@ const ProductEditPage = () => {
 
   const params = useParams();
 
-//   const productNameRef = useRef(null);
-//   const urlRef = useRef(null);
-//   const descriptionRef = useRef(null);
-//   const sizesRef = useRef(null);
-//   const priceRef = useRef(null);
+const editProduct = async (productID, product) => {
+    try {
+        const response = await axios.put(`https://63f8f6b21dc21d5465cbbfc1.mockapi.io/data/${productID}`, product)
+        const data = response.data
+        const fetched = await API.getProducts()
+        localStorage.setItem("localStorageProducts",JSON.stringify(fetched))
+    } catch (error) {
+        console.log(error)
+    }
+}
 
   useEffect(() => {
     const products = JSON.parse(localStorage.getItem("localStorageProducts"));
@@ -29,7 +35,6 @@ const ProductEditPage = () => {
     setEditedProduct(foundProduct);
   }, []);
 
-  
 
   const inputChangeHandler = (e) => {
     if (e.target.name === "product-name") {
@@ -49,7 +54,7 @@ const ProductEditPage = () => {
     }
   };
 
-  const submitEditsHandler = (e) => {
+  const submitEditsHandler = async (e) => {
     e.preventDefault();
     setEditedProduct({
         id: editedProduct.id,
@@ -62,17 +67,14 @@ const ProductEditPage = () => {
     setIsApproved(true);
 };
 
-
-const editProduct = async (product, productID) => {
-    await API.deleteProduct(productID)
-    await API.addProduct(product)
-    const fetched = await API.getProducts()
-    localStorage.setItem("localStorageProducts",JSON.stringify(fetched))
-}
-
 useEffect(()=> {
     if(isApproved) {
-        editProduct(editedProduct, editedProduct.id)
+        console.log(editedProduct)
+        editProduct(editedProduct.id, {title: nameInput,
+            imageUrl: urlInput,
+            description: descriptionInput,
+            size: sizeInput,
+            price: priceInput})
     }
 },[isApproved])
 
@@ -99,7 +101,6 @@ useEffect(()=> {
                 name="product-name"
                 placeholder={editedProduct.title}
                 onChange={inputChangeHandler}
-                // ref={productNameRef}
               />
             </li>
             <li className={classes.li}>
@@ -110,7 +111,6 @@ useEffect(()=> {
                 name="image-url"
                 placeholder={editedProduct.imageUrl}
                 onChange={inputChangeHandler}
-                // ref={urlRef}
               />
             </li>
             <li>
@@ -120,7 +120,6 @@ useEffect(()=> {
                 name="description"
                 placeholder={editedProduct.description}
                 onChange={inputChangeHandler}
-                // ref={descriptionRef}
               />
             </li>
             <li className={classes.li}>
@@ -131,7 +130,6 @@ useEffect(()=> {
                 name="price"
                 placeholder={editedProduct.price}
                 onChange={inputChangeHandler}
-                // ref={sizesRef}
               ></input>
             </li>
             <li className={classes.li}>
@@ -142,7 +140,6 @@ useEffect(()=> {
                 type="text"
                 placeholder={editedProduct.size}
                 onChange={inputChangeHandler}
-                // ref={priceRef}
               ></input>
             </li>
           </ul>
@@ -163,15 +160,6 @@ useEffect(()=> {
     return (
       <>
         <h1>Your changes were saved</h1>
-        {/* <ProductCard
-          products={products}
-          productName={editedProduct.title}
-          url={editedProduct.imageUrl}
-          description={editedProduct.description}
-          sizes={editedProduct.size}
-          identifier={editedProduct.id}
-          price={editedProduct.price}
-        /> */}
           <p>
           Go back to <Link to="/products/">Products page</Link>
         </p>
